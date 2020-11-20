@@ -6,14 +6,69 @@ namespace GettingArrayElementIndex
     {
         public static int GetIndexOf(this ulong[] arrayToSearch, ulong value)
         {
-            // TODO #5. Analyze the implementation of "GetLastIndexOf(ulong[], ulong)" method to see how "do..while" loop works, and implement the method using the "do..while" loop statement.
-            throw new NotImplementedException();
+            // #5. Analyze the implementation of "GetLastIndexOf(ulong[], ulong)" method to see how "do..while" loop works, and implement the method using the "do..while" loop statement.
+            if (arrayToSearch is null)
+            {
+                throw new ArgumentNullException(nameof(arrayToSearch));
+            }
+
+            int i = 0;
+            if (i == arrayToSearch.Length)
+            {
+                return -1;
+            }
+
+            do
+            {
+                if (arrayToSearch[i] == value)
+                {
+                    return i;
+                }
+            }
+            while (++i < arrayToSearch.Length);
+
+            return -1;
         }
 
         public static int GetIndexOf(this ulong[] arrayToSearch, ulong value, int startIndex, int count)
         {
-            // TODO #6. Analyze the implementation of "GetLastIndexOf(ulong[], ulong, startIndex, count)" method to see how "do..while" loop works, and implement the method using the "do..while" loop statement.
-            throw new NotImplementedException();
+            // #6. Analyze the implementation of "GetLastIndexOf(ulong[], ulong, startIndex, count)" method to see how "do..while" loop works, and implement the method using the "do..while" loop statement.
+            if (arrayToSearch is null)
+            {
+                throw new ArgumentNullException(nameof(arrayToSearch));
+            }
+
+            if (startIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex), "startIndex is less than zero");
+            }
+
+            if (startIndex > arrayToSearch.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex), "startIndex is greater or equals arrayToSearch.Length");
+            }
+
+            if (count < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(count), "count is less than zero");
+            }
+
+            int i = startIndex;
+            if (i == arrayToSearch.Length)
+            {
+                return -1;
+            }
+
+            do
+            {
+                if (arrayToSearch[i] == value)
+                {
+                    return i;
+                }
+            }
+            while (++i < startIndex + count);
+
+            return -1;
         }
 
         public static int GetLastIndexOf(this ulong[] arrayToSearch, ulong value)
